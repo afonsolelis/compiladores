@@ -54,6 +54,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#analise-lexica-e-expressoes-regulares">Análise Léxica e Expressões Regulares</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#analise-sintatica">Análise Sintática</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#funcionamento-de-um-compilador">Funcionamento de um Compilador</a>
@@ -156,12 +158,57 @@ for match in matches:
 <p>As expressões regulares são uma ferramenta poderosa para a Análise Léxica, permitindo identificar e extrair tokens específicos do código-fonte. Elas podem ser combinadas com outras técnicas, como autômatos finitos, para construir um analisador léxico completo.</p>
 <p>No entanto, é importante ressaltar que as expressões regulares têm suas limitações. Elas são adequadas para identificar padrões simples e regulares, mas podem se tornar complexas e difíceis de manter para linguagens com estruturas mais complexas. Nesses casos, outras técnicas, como a análise sintática, são necessárias para lidar com a estrutura hierárquica do código-fonte.</p>
 <ol>
+<li><strong>Análise Sintática (Fase da "gramática"):</strong>  Com as "palavras" identificadas, o compilador verifica se elas estão organizadas de forma correta, seguindo as regras gramaticais da linguagem. É como analisar se a ordem das palavras em uma frase faz sentido. Por exemplo, em português, dizemos "O gato comeu o peixe", e não "Comeu peixe o gato o". </li>
+</ol>
+<h4 id="analise-sintatica">Análise Sintática</h4>
+<p>A Análise Sintática é a segunda fase de um compilador, que ocorre após a Análise Léxica. Seu objetivo é verificar se a sequência de tokens gerada pela Análise Léxica está de acordo com as regras gramaticais da linguagem de programação. Em outras palavras, a Análise Sintática verifica se o código-fonte possui uma estrutura válida.</p>
+<p>Durante a Análise Sintática, o compilador constrói uma representação estruturada do código-fonte, geralmente na forma de uma árvore de análise sintática (AST - Abstract Syntax Tree). A AST representa a estrutura hierárquica do código, mostrando a relação entre os diferentes elementos da linguagem, como expressões, comandos e blocos de código.</p>
+<p>Existem duas abordagens principais para a Análise Sintática:</p>
+<ol>
+<li>Análise Sintática Descendente (Top-Down Parsing):</li>
+<li>Nessa abordagem, a análise começa a partir da regra gramatical mais geral e tenta derivar a sequência de tokens de entrada.</li>
+<li>O método mais comum é a análise preditiva recursiva, que utiliza recursão para percorrer a gramática e construir a AST.</li>
 <li>
-<p><strong>Análise Sintática (Fase da "gramática"):</strong>  Com as "palavras" identificadas, o compilador verifica se elas estão organizadas de forma correta, seguindo as regras gramaticais da linguagem. É como analisar se a ordem das palavras em uma frase faz sentido. Por exemplo, em português, dizemos "O gato comeu o peixe", e não "Comeu peixe o gato o". </p>
+<p>A análise descendente é adequada para gramáticas LL (Left-to-right, Leftmost derivation), onde é possível escolher a regra correta a ser aplicada com base nos próximos tokens de entrada.</p>
 </li>
 <li>
-<p><strong>Análise Semântica (Fase da "interpretação"):</strong>  Após a análise sintática, o compilador precisa entender o significado do código. Ele verifica se as operações fazem sentido, se as variáveis foram declaradas corretamente e se os tipos de dados são compatíveis. É como analisar se as frases em um texto fazem sentido juntas e transmitem a mensagem desejada.</p>
+<p>Análise Sintática Ascendente (Bottom-Up Parsing):</p>
 </li>
+<li>Nessa abordagem, a análise começa a partir dos tokens de entrada e tenta reduzi-los às regras gramaticais até chegar à regra inicial.</li>
+<li>O método mais comum é o LR (Left-to-right, Rightmost derivation), que utiliza uma tabela de análise para determinar as ações a serem tomadas com base nos tokens de entrada.</li>
+<li>A análise ascendente é adequada para gramáticas mais complexas e ambíguas, onde a escolha da regra correta depende dos tokens futuros.</li>
+</ol>
+<p>Exemplo de Análise Sintática usando a abordagem descendente:</p>
+<pre><code class="language-python">def parse_expression(tokens):
+    def parse_term(tokens):
+        if tokens[0] == 'NUMBER':
+            return ('NUMBER', tokens.pop(0)[1])
+        elif tokens[0] == 'LPAREN':
+            tokens.pop(0)
+            expr = parse_expression(tokens)
+            if tokens.pop(0) != 'RPAREN':
+                raise ValueError(&quot;Parêntese de fechamento ausente&quot;)
+            return expr
+
+    def parse_factor(tokens):
+        term = parse_term(tokens)
+        while tokens and tokens[0] in ['MULTIPLY', 'DIVIDE']:
+            op = tokens.pop(0)
+            right = parse_term(tokens)
+            term = (op, term, right)
+        return term
+
+    expr = parse_factor(tokens)
+    while tokens and tokens[0] in ['PLUS', 'MINUS']:
+        op = tokens.pop(0)
+        right = parse_factor(tokens)
+        expr = (op, expr, right)
+    return expr
+</code></pre>
+<p>Nesse exemplo, a função <code>parse_expression</code> realiza a análise sintática de uma expressão aritmética simples. Ela utiliza funções auxiliares <code>parse_term</code> e <code>parse_factor</code> para lidar com os diferentes níveis de precedência dos operadores. A análise é feita de forma recursiva, consumindo os tokens de entrada e construindo a AST correspondente.</p>
+<p>A Análise Sintática é uma fase crucial do compilador, pois garante que o código-fonte esteja estruturalmente correto antes de prosseguir para as próximas etapas, como a Análise Semântica e a Geração de Código. Ela também fornece informações importantes sobre a estrutura do programa, que são usadas nas fases posteriores do processo de compilação.</p>
+<ol>
+<li><strong>Análise Semântica (Fase da "interpretação"):</strong>  Após a análise sintática, o compilador precisa entender o significado do código. Ele verifica se as operações fazem sentido, se as variáveis foram declaradas corretamente e se os tipos de dados são compatíveis. É como analisar se as frases em um texto fazem sentido juntas e transmitem a mensagem desejada.</li>
 </ol>
 <p><img alt="imagem" src="https://res.cloudinary.com/dyhjjms8y/image/upload/v1720096769/Captura_de_tela_2024-07-04_093819_t5qtk7.png" /></p>
 <h3 id="funcionamento-de-um-compilador">Funcionamento de um Compilador</h3>
