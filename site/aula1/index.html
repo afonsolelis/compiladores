@@ -46,6 +46,24 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Aula 1</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#a-importancia-dos-compiladores">A Importância dos Compiladores</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fases-da-compilacao-uma-analise-detalhada">Fases da Compilação: Uma Análise Detalhada</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#para-um-problema">Para um problema:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#analise-lexica-e-expressoes-regulares">Análise Léxica e Expressões Regulares</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#funcionamento-de-um-compilador">Funcionamento de um Compilador</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vamos-rodar-tudo-isso-em-python">Vamos rodar tudo isso em Python!</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#a-tabela-de-simbolos-organizando-a-informacao">A Tabela de Símbolos: Organizando a Informação</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#atividade-em-sala-de-aula">Atividade em Sala de Aula</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -84,7 +102,239 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="aula-1">Aula 1</h1>
+                <h2 id="aula-1-prazer-compiladores-continuacao">Aula 1 - Prazer, Compiladores! 🤝👾 (Continuação)</h2>
+<h3 id="a-importancia-dos-compiladores">A Importância dos Compiladores</h3>
+<p>Na primeira parte da aula, vimos que os compiladores são como tradutores que transformam código escrito em uma linguagem de programação (que humanos entendem) para uma linguagem que o computador entende (linguagem de máquina). </p>
+<p>Imagine que você quer ensinar um amigo a fazer um bolo, mas ele só fala japonês. Você precisaria de um tradutor para transmitir as instruções corretamente, certo? É exatamente isso que um compilador faz! Ele garante que o computador compreenda e execute as instruções do seu programa.</p>
+<h3 id="fases-da-compilacao-uma-analise-detalhada">Fases da Compilação: Uma Análise Detalhada</h3>
+<h4 id="para-um-problema">Para um problema:</h4>
+<p><img alt="imagem" src="https://res.cloudinary.com/dyhjjms8y/image/upload/v1720096770/Captura_de_tela_2024-07-04_093903_wpi4k4.png" /></p>
+<p>A compilação, como vimos, é um processo dividido em etapas. Vamos entender melhor as três principais:</p>
+<ol>
+<li><strong>Análise Léxica (Fase do "dicionário"):</strong> Nesta fase, o compilador age como um leitor que examina o código letra por letra, agrupando-as em "palavras" com significado para a linguagem, como nomes de variáveis, palavras-chave (ex.: <code>if</code>, <code>else</code>, <code>for</code>) e operadores (+, -, *, /). Imagine um corretor ortográfico verificando cada palavra e sinal de pontuação do seu texto.</li>
+</ol>
+<p><img alt="imagem" src="https://res.cloudinary.com/dyhjjms8y/image/upload/v1720096770/Captura_de_tela_2024-07-04_093809_mawn2u.png" /></p>
+<h4 id="analise-lexica-e-expressoes-regulares">Análise Léxica e Expressões Regulares</h4>
+<p>A Análise Léxica é a primeira fase de um compilador, responsável por dividir o código-fonte em uma sequência de tokens. Esses tokens representam as unidades básicas da linguagem, como palavras-chave, identificadores, números, operadores, entre outros.</p>
+<p>Para realizar a Análise Léxica, uma técnica comumente utilizada são as expressões regulares (regex). As expressões regulares são padrões que descrevem um conjunto de cadeias de caracteres. Elas permitem identificar e extrair partes específicas de um texto com base em regras definidas.</p>
+<p>As expressões regulares são compostas por caracteres literais e metacaracteres. Alguns metacaracteres comuns incluem:</p>
+<ul>
+<li><code>.</code> (ponto): Corresponde a qualquer caractere, exceto uma nova linha.</li>
+<li><code>*</code> (asterisco): Corresponde a zero ou mais ocorrências do caractere ou grupo anterior.</li>
+<li><code>+</code> (mais): Corresponde a uma ou mais ocorrências do caractere ou grupo anterior.</li>
+<li><code>?</code> (interrogação): Corresponde a zero ou uma ocorrência do caractere ou grupo anterior.</li>
+<li><code>^</code> (circunflexo): Corresponde ao início da linha.</li>
+<li><code>$</code> (cifrão): Corresponde ao final da linha.</li>
+<li><code>[]</code> (colchetes): Define um conjunto de caracteres. Por exemplo, <code>[aeiou]</code> corresponde a qualquer vogal.</li>
+</ul>
+<p>Além disso, existem classes de caracteres predefinidas, como:</p>
+<ul>
+<li><code>\d</code>: Corresponde a qualquer dígito (0-9).</li>
+<li><code>\w</code>: Corresponde a qualquer caractere alfanumérico (letra ou dígito).</li>
+<li><code>\s</code>: Corresponde a qualquer caractere de espaço em branco (espaço, tabulação, nova linha).</li>
+</ul>
+<p>Exemplo de expressão regular para identificar números inteiros:</p>
+<pre><code class="language-python">import re
+
+# Expressão regular para números inteiros
+pattern = r'\d+'
+
+# Texto de exemplo
+text = &quot;Eu tenho 25 anos e meu irmão tem 30 anos.&quot;
+
+# Encontrar todos os números inteiros no texto
+matches = re.findall(pattern, text)
+
+# Imprimir os números encontrados
+for match in matches:
+    print(match)
+</code></pre>
+<p>Nesse exemplo, a expressão regular <code>\d+</code> é usada para encontrar números inteiros no texto. O método <code>re.findall()</code> é utilizado para encontrar todas as ocorrências da expressão regular no texto. O resultado será:</p>
+<pre><code>25
+30
+</code></pre>
+<p>As expressões regulares são uma ferramenta poderosa para a Análise Léxica, permitindo identificar e extrair tokens específicos do código-fonte. Elas podem ser combinadas com outras técnicas, como autômatos finitos, para construir um analisador léxico completo.</p>
+<p>No entanto, é importante ressaltar que as expressões regulares têm suas limitações. Elas são adequadas para identificar padrões simples e regulares, mas podem se tornar complexas e difíceis de manter para linguagens com estruturas mais complexas. Nesses casos, outras técnicas, como a análise sintática, são necessárias para lidar com a estrutura hierárquica do código-fonte.</p>
+<ol>
+<li>
+<p><strong>Análise Sintática (Fase da "gramática"):</strong>  Com as "palavras" identificadas, o compilador verifica se elas estão organizadas de forma correta, seguindo as regras gramaticais da linguagem. É como analisar se a ordem das palavras em uma frase faz sentido. Por exemplo, em português, dizemos "O gato comeu o peixe", e não "Comeu peixe o gato o". </p>
+</li>
+<li>
+<p><strong>Análise Semântica (Fase da "interpretação"):</strong>  Após a análise sintática, o compilador precisa entender o significado do código. Ele verifica se as operações fazem sentido, se as variáveis foram declaradas corretamente e se os tipos de dados são compatíveis. É como analisar se as frases em um texto fazem sentido juntas e transmitem a mensagem desejada.</p>
+</li>
+</ol>
+<p><img alt="imagem" src="https://res.cloudinary.com/dyhjjms8y/image/upload/v1720096769/Captura_de_tela_2024-07-04_093819_t5qtk7.png" /></p>
+<h3 id="funcionamento-de-um-compilador">Funcionamento de um Compilador</h3>
+<p><img alt="imagem" src="https://res.cloudinary.com/dyhjjms8y/image/upload/v1720096643/Captura_de_tela_2024-07-04_093530_jkncgc.png" /></p>
+<p><img alt="imagem" src="https://res.cloudinary.com/dyhjjms8y/image/upload/v1720096770/Captura_de_tela_2024-07-04_093751_rvtlu6.png" /></p>
+<h3 id="vamos-rodar-tudo-isso-em-python">Vamos rodar tudo isso em Python!</h3>
+<p>Aqui está um exemplo de programa em Python que demonstra as três fases principais de um compilador: análise léxica, análise sintática e análise semântica.</p>
+<pre><code class="language-python">import re
+
+# Definição dos tokens
+tokens = [
+    (r'\d+', 'NUMBER'),
+    (r'\+', 'PLUS'),
+    (r'\-', 'MINUS'),
+    (r'\*', 'MULTIPLY'),
+    (r'\/', 'DIVIDE'),
+    (r'\(', 'LPAREN'),
+    (r'\)', 'RPAREN'),
+    (r'\s+', 'WHITESPACE')
+]
+
+# Análise Léxica
+def lexical_analysis(code):
+    lexemes = []
+    while code:
+        matched = False
+        for token_expr, token_type in tokens:
+            match = re.match(token_expr, code)
+            if match:
+                value = match.group()
+                if token_type != 'WHITESPACE':
+                    lexemes.append((token_type, value))
+                code = code[len(value):]
+                matched = True
+                break
+        if not matched:
+            raise ValueError(f&quot;Lexema inválido: {code}&quot;)
+    return lexemes
+
+# Análise Sintática
+def syntax_analysis(lexemes):
+    ast = []
+    while lexemes:
+        token_type, value = lexemes.pop(0)
+        if token_type == 'NUMBER':
+            ast.append(('NUMBER', int(value)))
+        elif token_type in ['PLUS', 'MINUS', 'MULTIPLY', 'DIVIDE']:
+            ast.append((token_type,))
+        elif token_type == 'LPAREN':
+            sub_expr = syntax_analysis(lexemes)
+            ast.append(('EXPR', sub_expr))
+            if lexemes.pop(0)[0] != 'RPAREN':
+                raise ValueError(&quot;Parêntese de fechamento ausente&quot;)
+        else:
+            raise ValueError(f&quot;Token inesperado: {token_type}&quot;)
+    return ast
+
+# Análise Semântica
+def semantic_analysis(ast):
+    if isinstance(ast, tuple):
+        if ast[0] == 'NUMBER':
+            return ast[1]
+        elif ast[0] in ['PLUS', 'MINUS', 'MULTIPLY', 'DIVIDE']:
+            return ast[0]
+        elif ast[0] == 'EXPR':
+            return semantic_analysis(ast[1])
+    elif isinstance(ast, list):
+        if len(ast) != 3:
+            raise ValueError(&quot;Expressão inválida&quot;)
+        left = semantic_analysis(ast[0])
+        op = semantic_analysis(ast[1])
+        right = semantic_analysis(ast[2])
+        if not isinstance(left, int) or not isinstance(right, int):
+            raise ValueError(&quot;Operandos inválidos&quot;)
+        if op == 'PLUS':
+            return left + right
+        elif op == 'MINUS':
+            return left - right
+        elif op == 'MULTIPLY':
+            return left * right
+        elif op == 'DIVIDE':
+            if right == 0:
+                raise ValueError(&quot;Divisão por zero&quot;)
+            return left // right
+
+# Exemplo de uso
+code = &quot;2 + (3 * 4) - 5&quot;
+print(&quot;Código fonte:&quot;, code)
+
+lexemes = lexical_analysis(code)
+print(&quot;Análise Léxica:&quot;, lexemes)
+
+ast = syntax_analysis(lexemes)
+print(&quot;Análise Sintática:&quot;, ast)
+
+result = semantic_analysis(ast)
+print(&quot;Análise Semântica:&quot;, result)
+</code></pre>
+<p>Explicação do programa:</p>
+<ol>
+<li>Análise Léxica:</li>
+<li>Definimos os tokens que o compilador reconhecerá, como números, operadores e parênteses.</li>
+<li>A função <code>lexical_analysis</code> recebe o código-fonte como entrada e retorna uma lista de lexemas (tokens) encontrados no código.</li>
+<li>
+<p>Utilizamos expressões regulares para identificar os tokens no código-fonte.</p>
+</li>
+<li>
+<p>Análise Sintática:</p>
+</li>
+<li>A função <code>syntax_analysis</code> recebe a lista de lexemas como entrada e constrói uma árvore de análise sintática (AST - Abstract Syntax Tree).</li>
+<li>Percorremos os lexemas e construímos a AST com base na estrutura da expressão.</li>
+<li>
+<p>Tratamos parênteses aninhados recursivamente.</p>
+</li>
+<li>
+<p>Análise Semântica:</p>
+</li>
+<li>A função <code>semantic_analysis</code> recebe a AST como entrada e realiza a análise semântica.</li>
+<li>Percorremos a AST recursivamente e avaliamos a expressão de acordo com as regras semânticas.</li>
+<li>Verificamos se os operandos são válidos e realizamos as operações aritméticas correspondentes.</li>
+</ol>
+<p>No exemplo de uso, fornecemos um código-fonte simples <code>"2 + (3 * 4) - 5"</code> e aplicamos as três fases do compilador:
+1. Análise Léxica: Obtemos a lista de lexemas.
+2. Análise Sintática: Construímos a AST a partir dos lexemas.
+3. Análise Semântica: Avaliamos a expressão e obtemos o resultado final.</p>
+<p>Esse programa é uma simplificação das fases de um compilador e serve para ilustrar os conceitos básicos envolvidos em cada fase. Em um compilador real, essas fases são mais complexas e envolvem mais etapas e detalhes.</p>
+<h3 id="a-tabela-de-simbolos-organizando-a-informacao">A Tabela de Símbolos: Organizando a Informação</h3>
+<p>A tabela de símbolos é como um dicionário que o compilador utiliza para armazenar e organizar informações sobre todos os elementos do seu código, como variáveis, funções e classes. </p>
+<p>Imagine que você está organizando uma festa e precisa controlar uma lista de convidados. Para cada convidado, você anota seu nome, número de telefone e se ele confirmou presença. A tabela de símbolos funciona de maneira similar, guardando informações importantes sobre cada elemento do seu código.</p>
+<h3 id="atividade-em-sala-de-aula">Atividade em Sala de Aula</h3>
+<p><strong>Objetivo:</strong>  Compreender a importância da tabela de símbolos na análise de código.</p>
+<p><strong>Enunciado:</strong> Imagine que você é um compilador e precisa analisar o código abaixo. Crie uma tabela de símbolos listando todos os elementos (variáveis, constantes, etc.) e seus respectivos atributos (tipo, escopo, etc.).</p>
+<pre><code class="language-python">nome = &quot;Maria&quot;  
+idade = 25
+PI = 3.1415
+
+if idade &gt;= 18:
+  print(nome, &quot;é maior de idade.&quot;)
+else:
+  print(nome, &quot;é menor de idade.&quot;)
+</code></pre>
+<p><strong>Dica:</strong>  Utilize o seguinte formato para a tabela:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Tipo</th>
+<th>Escopo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nome</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>idade</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PI</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observação:</strong>  Discuta com seus colegas as diferenças entre variáveis e constantes, e a importância de definir o tipo de dado para cada elemento. </p>
               
             </div>
           </div><footer>
