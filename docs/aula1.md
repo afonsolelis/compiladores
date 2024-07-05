@@ -6,6 +6,10 @@ Na primeira parte da aula, vimos que os compiladores são como tradutores que tr
 
 Imagine que você quer ensinar um amigo a fazer um bolo, mas ele só fala japonês. Você precisaria de um tradutor para transmitir as instruções corretamente, certo? É exatamente isso que um compilador faz! Ele garante que o computador compreenda e execute as instruções do seu programa.
 
+## Governo Dos States Pede para Parar de Utilizar C e Assembly
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_heEHuBxIBQ?si=WW0l6RF-0MkX1o65" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Fases da Compilação: Uma Análise Detalhada
 
 #### Para um problema:
@@ -81,14 +85,14 @@ Durante a Análise Sintática, o compilador constrói uma representação estrut
 Existem duas abordagens principais para a Análise Sintática:
 
 1. Análise Sintática Descendente (Top-Down Parsing):
-   - Nessa abordagem, a análise começa a partir da regra gramatical mais geral e tenta derivar a sequência de tokens de entrada.
-   - O método mais comum é a análise preditiva recursiva, que utiliza recursão para percorrer a gramática e construir a AST.
-   - A análise descendente é adequada para gramáticas LL (Left-to-right, Leftmost derivation), onde é possível escolher a regra correta a ser aplicada com base nos próximos tokens de entrada.
+   Nessa abordagem, a análise começa a partir da regra gramatical mais geral e tenta derivar a sequência de tokens de entrada.
+   O método mais comum é a análise preditiva recursiva, que utiliza recursão para percorrer a gramática e construir a AST.
+   A análise descendente é adequada para gramáticas LL (Left-to-right, Leftmost derivation), onde é possível escolher a regra correta a ser aplicada com base nos próximos tokens de entrada.
 
 2. Análise Sintática Ascendente (Bottom-Up Parsing):
-   - Nessa abordagem, a análise começa a partir dos tokens de entrada e tenta reduzi-los às regras gramaticais até chegar à regra inicial.
-   - O método mais comum é o LR (Left-to-right, Rightmost derivation), que utiliza uma tabela de análise para determinar as ações a serem tomadas com base nos tokens de entrada.
-   - A análise ascendente é adequada para gramáticas mais complexas e ambíguas, onde a escolha da regra correta depende dos tokens futuros.
+   Nessa abordagem, a análise começa a partir dos tokens de entrada e tenta reduzi-los às regras gramaticais até chegar à regra inicial.
+   O método mais comum é o LR (Left-to-right, Rightmost derivation), que utiliza uma tabela de análise para determinar as ações a serem tomadas com base nos tokens de entrada.
+   A análise ascendente é adequada para gramáticas mais complexas e ambíguas, onde a escolha da regra correta depende dos tokens futuros.
 
 Exemplo de Análise Sintática usando a abordagem descendente:
 
@@ -264,27 +268,8 @@ Imagine que você está organizando uma festa e precisa controlar uma lista de c
 
 ### Atividade em Sala de Aula
 
-**Objetivo:**  Compreender a importância da tabela de símbolos na análise de código.
+**Objetivo:**  Compreender a importância do Debbuging!
 
-**Enunciado:** Imagine que você é um compilador e precisa analisar o código abaixo. Crie uma tabela de símbolos listando todos os elementos (variáveis, constantes, etc.) e seus respectivos atributos (tipo, escopo, etc.).
-
-```python
-nome = "Maria"  
-idade = 25
-PI = 3.1415
-
-if idade >= 18:
-  print(nome, "é maior de idade.")
-else:
-  print(nome, "é menor de idade.")
-```
-
-**Dica:**  Utilize o seguinte formato para a tabela:
-
-| Elemento | Tipo | Escopo | Valor |
-|---|---|---|---|
-| nome |  |  |  |
-| idade |  |  |  |
-| PI |  |  |  |
+**Enunciado:** Sabe o código mais acima sobre compilação em python? Pois é, ele está quebrado, a sua missão é ajustar o código!
 
 **Observação:**  Discuta com seus colegas as diferenças entre variáveis e constantes, e a importância de definir o tipo de dado para cada elemento. 
