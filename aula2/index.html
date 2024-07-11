@@ -50,6 +50,66 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Aula 2</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#o-que-e-assembly">O que é Assembly? 🤔</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#diferencas-entre-compilacao-e-interpretacao">Diferenças entre Compilação e Interpretação ⚖️</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#consumo-de-energia-rust-vs-python">Consumo de Energia: Rust vs. Python 🔋</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#demonstracao-pratica">Demonstração Prática</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tutorial-instalacao-do-sdk-do-net-8-e-criacao-de-um-projeto-mvc">Tutorial: Instalação do SDK do .NET 8 e Criação de um Projeto MVC 🚀</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#passo-1-instalacao-do-sdk-do-net-8">Passo 1: Instalação do SDK do .NET 8 📥</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#passo-2-criacao-de-um-novo-projeto-mvc">Passo 2: Criação de um Novo Projeto MVC 🆕</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#passo-3-compilacao-do-projeto">Passo 3: Compilação do Projeto ⚙️</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#passo-4-quebrando-a-compilacao">Passo 4: Quebrando a Compilação 💥</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#passo-5-corrigindo-o-codigo">Passo 5: Corrigindo o Código 🔧</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#principais-livros-de-compilacao">Principais Livros de Compilação</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-compilers-principles-techniques-and-tools-dragon-book">1. "Compilers: Principles, Techniques, and Tools" (Dragon Book)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resumo">Resumo:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-engineering-a-compiler">2. "Engineering a Compiler"</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resumo_1">Resumo:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-modern-compiler-implementation-in-cjavaml">3. "Modern Compiler Implementation in C/Java/ML"</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resumo_2">Resumo:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-advanced-compiler-design-and-implementation">4. "Advanced Compiler Design and Implementation"</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resumo_3">Resumo:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-the-definitive-antlr-4-reference">5. "The Definitive ANTLR 4 Reference"</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resumo_4">Resumo:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-programming-language-pragmatics">6. "Programming Language Pragmatics"</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#resumo_5">Resumo:</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -84,7 +144,284 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="aula-2">Aula 2</h1>
+                <h1 id="aula-2-compilacao-e-interacao-do-codigo-ao-executavel">Aula 2 -  Compilação e Interação: Do Código ao Executável 💻🔧</h1>
+<p>No fascinante mundo da programação, as linguagens de programação e as linguagens de máquina desempenham papéis fundamentais na criação de software. Embora ambas sejam invenções humanas, as linguagens de programação oferecem uma compreensão mais acessível, utilizando auxiliares mnemônicos e açúcar sintático para facilitar o processo de desenvolvimento. Por outro lado, a linguagem de máquina é representada por um arquivo binário complexo, de difícil compreensão para os programadores.</p>
+<h2 id="o-que-e-assembly">O que é Assembly? 🤔</h2>
+<p>Assembly é uma linguagem de baixo nível que serve como uma representação legível por humanos das instruções de linguagem de máquina. Ela fornece uma abstração mais próxima do hardware, permitindo aos programadores um controle mais direto sobre o comportamento do processador. No entanto, escrever código em Assembly pode ser uma tarefa árdua e propensa a erros, especialmente em projetos de grande escala.</p>
+<h2 id="diferencas-entre-compilacao-e-interpretacao">Diferenças entre Compilação e Interpretação ⚖️</h2>
+<p>Existem duas abordagens principais para processar o código-fonte e executá-lo em um computador: compilação e interpretação. Vamos explorar as diferenças entre essas duas técnicas:</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Compilação</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Velocidade de execução</td>
+<td>Rápida</td>
+<td>Mais lenta</td>
+</tr>
+<tr>
+<td>Consumo de recursos</td>
+<td>Menor</td>
+<td>Maior</td>
+</tr>
+<tr>
+<td>Portabilidade</td>
+<td>Específica da plataforma</td>
+<td>Independente da plataforma</td>
+</tr>
+<tr>
+<td>Detecção de erros</td>
+<td>Durante a compilação</td>
+<td>Durante a execução</td>
+</tr>
+<tr>
+<td>Exemplo de linguagens</td>
+<td>C, C++, Rust</td>
+<td>Python, JavaScript, Ruby</td>
+</tr>
+</tbody>
+</table>
+<p>🔔 É importante ressaltar que o código-fonte processado por meio de interpretação oferece maior flexibilidade e facilidade no processo de programação. No entanto, essa abordagem consome uma quantidade maior de recursos computacionais e resulta em uma execução mais lenta em comparação com o código compilado. ❗</p>
+<h2 id="consumo-de-energia-rust-vs-python">Consumo de Energia: Rust vs. Python 🔋</h2>
+<p>Ao comparar linguagens compiladas e interpretadas, um aspecto interessante a ser considerado é o consumo de energia. Vamos analisar a diferença entre Rust, uma linguagem compilada, e Python, uma linguagem interpretada:</p>
+<pre><code>+---------------+---------------+
+|   Linguagem   | Consumo de    |
+|               | Energia       |
++---------------+---------------+
+| Rust          | Baixo         |
++---------------+---------------+
+| Python        | Alto          |
++---------------+---------------+
+</code></pre>
+<p>Rust, sendo uma linguagem compilada, é conhecida por sua eficiência energética. O código Rust é compilado diretamente para instruções de máquina otimizadas, resultando em um consumo de energia menor durante a execução.</p>
+<p>Por outro lado, Python, sendo uma linguagem interpretada, requer a presença de um interpretador para executar o código. Esse processo adicional de interpretação consome mais energia em comparação com a execução direta do código compilado.</p>
+<p>Portanto, se a eficiência energética for uma preocupação crucial para o seu projeto, optar por uma linguagem compilada como Rust pode ser uma escolha mais adequada.</p>
+<h2 id="demonstracao-pratica">Demonstração Prática</h2>
+<h3 id="tutorial-instalacao-do-sdk-do-net-8-e-criacao-de-um-projeto-mvc">Tutorial: Instalação do SDK do .NET 8 e Criação de um Projeto MVC 🚀</h3>
+<p>Neste tutorial, vamos aprender como instalar o SDK do .NET 8, criar um novo projeto MVC usando o comando <code>dotnet new mvc</code> e explorar o processo de compilação. Também faremos uma modificação no código para quebrar a compilação e, em seguida, corrigiremos o código para que a compilação seja concluída com sucesso.</p>
+<h2 id="passo-1-instalacao-do-sdk-do-net-8">Passo 1: Instalação do SDK do .NET 8 📥</h2>
+<p>Antes de começarmos, certifique-se de ter o SDK do .NET 8 instalado em seu sistema. Você pode baixar o SDK do .NET 8 a partir do site oficial da Microsoft: <a href="https://dotnet.microsoft.com/download/dotnet/8.0">Download .NET 8 SDK</a></p>
+<p>Siga as instruções de instalação específicas para o seu sistema operacional.</p>
+<h2 id="passo-2-criacao-de-um-novo-projeto-mvc">Passo 2: Criação de um Novo Projeto MVC 🆕</h2>
+<p>Abra o terminal ou prompt de comando e navegue até o diretório onde deseja criar o projeto. Em seguida, execute o seguinte comando para criar um novo projeto MVC:</p>
+<pre><code>dotnet new mvc -o MeuProjetoMVC
+</code></pre>
+<p>Isso criará uma nova pasta chamada "MeuProjetoMVC" contendo a estrutura básica de um projeto MVC.</p>
+<h2 id="passo-3-compilacao-do-projeto">Passo 3: Compilação do Projeto ⚙️</h2>
+<p>Navegue para o diretório do projeto recém-criado:</p>
+<pre><code>cd MeuProjetoMVC
+</code></pre>
+<p>Em seguida, execute o seguinte comando para compilar o projeto:</p>
+<pre><code>dotnet build
+</code></pre>
+<p>Se tudo estiver correto, a compilação será concluída com sucesso e você verá uma mensagem semelhante a esta:</p>
+<pre><code>Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+</code></pre>
+<h2 id="passo-4-quebrando-a-compilacao">Passo 4: Quebrando a Compilação 💥</h2>
+<p>Agora, vamos fazer uma modificação no código para quebrar a compilação. Abra o arquivo <code>Controllers/HomeController.cs</code> em um editor de texto e adicione um erro de sintaxe intencional. Por exemplo, remova um ponto e vírgula (<code>;</code>) no final de uma linha.</p>
+<p>Salve o arquivo e execute novamente o comando <code>dotnet build</code>. Desta vez, a compilação falhará e você verá uma mensagem de erro indicando o problema:</p>
+<pre><code>Build failed.
+    1 Error(s)
+</code></pre>
+<p>A mensagem de erro fornecerá detalhes sobre o erro de sintaxe que você introduziu.</p>
+<h2 id="passo-5-corrigindo-o-codigo">Passo 5: Corrigindo o Código 🔧</h2>
+<p>Agora, vamos corrigir o código para que a compilação seja concluída com sucesso. Abra novamente o arquivo <code>Controllers/HomeController.cs</code> e corrija o erro de sintaxe que você introduziu anteriormente.</p>
+<p>Salve o arquivo e execute novamente o comando <code>dotnet build</code>. Desta vez, a compilação será concluída com sucesso.</p>
+<h2 id="principais-livros-de-compilacao">Principais Livros de Compilação</h2>
+<p>Claro! Aqui está um resumo dos principais livros sobre compilação e compiladores, que são essenciais para quem deseja aprofundar seus conhecimentos nessa área:</p>
+<h2 id="1-compilers-principles-techniques-and-tools-dragon-book">1. <strong>"Compilers: Principles, Techniques, and Tools" (Dragon Book)</strong></h2>
+<p>Autores: Alfred V. Aho, Monica S. Lam, Ravi Sethi, Jeffrey D. Ullman</p>
+<h3 id="resumo">Resumo:</h3>
+<p>Conhecido como o "Dragon Book" devido à ilustração de um dragão na capa, este livro é considerado a bíblia dos compiladores. Ele cobre todos os aspectos fundamentais da construção de compiladores, incluindo análise léxica, análise sintática, análise semântica, otimização de código, geração de código e técnicas de compilação avançadas. É amplamente utilizado em cursos universitários e é uma referência essencial para qualquer pessoa interessada em compiladores.</p>
+<h2 id="2-engineering-a-compiler">2. <strong>"Engineering a Compiler"</strong></h2>
+<p>Autores: Keith D. Cooper, Linda Torczon</p>
+<h3 id="resumo_1">Resumo:</h3>
+<p>Este livro oferece uma abordagem prática e detalhada para a engenharia de compiladores. Ele aborda os princípios básicos e as técnicas avançadas de construção de compiladores, com ênfase em exemplos práticos e implementações reais. É ideal para estudantes e profissionais que desejam entender como os compiladores funcionam na prática e como aplicar esses conhecimentos em projetos reais.</p>
+<h2 id="3-modern-compiler-implementation-in-cjavaml">3. <strong>"Modern Compiler Implementation in C/Java/ML"</strong></h2>
+<p>Autor: Andrew W. Appel</p>
+<h3 id="resumo_2">Resumo:</h3>
+<p>Esta série de livros, disponível em versões para C, Java e ML, fornece uma introdução prática à implementação de compiladores. Cada versão do livro é adaptada para a linguagem de programação específica, oferecendo exemplos e exercícios práticos. O livro cobre tópicos como análise léxica, análise sintática, geração de código intermediário, otimização e geração de código final. É uma excelente escolha para quem deseja aprender a implementar compiladores em uma linguagem específica.</p>
+<h2 id="4-advanced-compiler-design-and-implementation">4. <strong>"Advanced Compiler Design and Implementation"</strong></h2>
+<p>Autor: Steven Muchnick</p>
+<h3 id="resumo_3">Resumo:</h3>
+<p>Este livro é voltado para leitores que já possuem um conhecimento básico sobre compiladores e desejam explorar técnicas avançadas de design e implementação. Ele cobre tópicos como otimização de código, análise de dependências, paralelismo, e técnicas de compilação para arquiteturas modernas. É uma leitura essencial para quem deseja aprofundar seus conhecimentos e trabalhar em projetos de compiladores de alto desempenho.</p>
+<h2 id="5-the-definitive-antlr-4-reference">5. <strong>"The Definitive ANTLR 4 Reference"</strong></h2>
+<p>Autor: Terence Parr</p>
+<h3 id="resumo_4">Resumo:</h3>
+<p>Este livro é um guia completo para o ANTLR (Another Tool for Language Recognition), uma ferramenta popular para a construção de analisadores léxicos e sintáticos. Ele fornece uma introdução prática ao uso do ANTLR, com exemplos detalhados e explicações claras. É ideal para desenvolvedores que desejam criar linguagens de domínio específico (DSLs) ou trabalhar com análise de linguagem.</p>
+<h2 id="6-programming-language-pragmatics">6. <strong>"Programming Language Pragmatics"</strong></h2>
+<p>Autor: Michael L. Scott</p>
+<h3 id="resumo_5">Resumo:</h3>
+<p>Embora não seja exclusivamente sobre compiladores, este livro oferece uma visão abrangente sobre a teoria e a prática das linguagens de programação, incluindo a construção de compiladores. Ele aborda tópicos como semântica de linguagem, design de linguagem, e técnicas de implementação. É uma excelente leitura para entender o contexto mais amplo em que os compiladores operam.</p>
+<h1 id="analise-lexica-geracao-de-tokens-em-detalhes">Análise Léxica: Geração de Tokens em Detalhes 🔍📄</h1>
+<p>Nesta aula, vamos explorar a análise léxica e a geração de tokens em detalhes, utilizando a linguagem de programação Python. A análise léxica é a primeira fase do processo de compilação, onde o código-fonte é dividido em unidades menores chamadas tokens.</p>
+<h2 id="o-que-sao-tokens">O que são Tokens? 🎫</h2>
+<p>Tokens são unidades básicas de um programa que possuem um significado próprio. Eles podem ser palavras-chave, identificadores, literais, operadores ou símbolos especiais. Cada token é classificado de acordo com sua categoria léxica.</p>
+<h2 id="exemplo-de-codigo-fonte">Exemplo de Código-Fonte 💻</h2>
+<p>Vamos considerar o seguinte código-fonte em uma linguagem de programação hipotética:</p>
+<pre><code>if x &gt; 10 then
+    print(&quot;Hello, World!&quot;)
+else
+    print(&quot;x is less than or equal to 10&quot;)
+end
+</code></pre>
+<h2 id="implementacao-do-analisador-lexico-em-python">Implementação do Analisador Léxico em Python 🐍</h2>
+<p>Agora, vamos implementar um analisador léxico simples em Python para gerar os tokens a partir do código-fonte acima.</p>
+<pre><code class="language-python">import re
+
+def tokenize(code):
+    # Definição das expressões regulares para cada tipo de token
+    token_specs = [
+        ('KEYWORD', r'if|then|else|end|print'),
+        ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
+        ('NUMBER', r'\d+(\.\d+)?'),
+        ('OPERATOR', r'[&gt;&lt;=!+\-*/%]'),
+        ('STRING', r'&quot;.*?&quot;'),
+        ('LPAREN', r'\('),
+        ('RPAREN', r'\)'),
+        ('NEWLINE', r'\n'),
+        ('SKIP', r'[ \t]+'),
+    ]
+
+    # Compilação das expressões regulares
+    token_regex = '|'.join('(?P&lt;%s&gt;%s)' % pair for pair in token_specs)
+    regex = re.compile(token_regex)
+
+    # Geração dos tokens
+    tokens = []
+    for match in regex.finditer(code):
+        token_type = match.lastgroup
+        token_value = match.group(token_type)
+        if token_type != 'SKIP':
+            tokens.append((token_type, token_value))
+
+    return tokens
+
+# Código-fonte de exemplo
+code = '''
+if x &gt; 10 then
+    print(&quot;Hello, World!&quot;)
+else
+    print(&quot;x is less than or equal to 10&quot;)
+end
+'''
+
+# Chamada da função de tokenização
+tokens = tokenize(code)
+
+# Impressão dos tokens gerados
+for token in tokens:
+    print(token)
+</code></pre>
+<p>Neste exemplo, utilizamos expressões regulares para definir os padrões de cada tipo de token. Em seguida, compilamos essas expressões regulares em um único padrão usando o módulo <code>re</code> do Python.</p>
+<p>A função <code>tokenize</code> recebe o código-fonte como entrada e itera sobre as correspondências encontradas pelo padrão de expressão regular. Para cada correspondência, extraímos o tipo de token e seu valor. Ignoramos os tokens do tipo <code>SKIP</code>, que representam espaços em branco e tabulações.</p>
+<p>Por fim, imprimimos os tokens gerados, que serão semelhantes a:</p>
+<pre><code>('KEYWORD', 'if')
+('IDENTIFIER', 'x')
+('OPERATOR', '&gt;')
+('NUMBER', '10')
+('KEYWORD', 'then')
+('KEYWORD', 'print')
+('LPAREN', '(')
+('STRING', '&quot;Hello, World!&quot;')
+('RPAREN', ')')
+('KEYWORD', 'else')
+('KEYWORD', 'print')
+('LPAREN', '(')
+('STRING', '&quot;x is less than or equal to 10&quot;')
+('RPAREN', ')')
+('KEYWORD', 'end')
+</code></pre>
+<p>Cada token é representado por uma tupla contendo o tipo de token e seu valor correspondente.</p>
+<h2 id="vamos-brincar-no-colab">Vamos Brincar no Colab!</h2>
+<p>Claro! Vamos refazer o exemplo anterior e criar uma tabela de símbolos usando o pandas no Google Colab. Aqui está o código atualizado:</p>
+<pre><code class="language-python">import re
+import pandas as pd
+
+def tokenize(code):
+    # Definição das expressões regulares para cada tipo de token
+    token_specs = [
+        ('KEYWORD', r'if|then|else|end|print'),
+        ('IDENTIFIER', r'[a-zA-Z_][a-zA-Z0-9_]*'),
+        ('NUMBER', r'\d+(\.\d+)?'),
+        ('OPERATOR', r'[&gt;&lt;=!+\-*/%]'),
+        ('STRING', r'&quot;.*?&quot;'),
+        ('LPAREN', r'\('),
+        ('RPAREN', r'\)'),
+        ('NEWLINE', r'\n'),
+        ('SKIP', r'[ \t]+'),
+    ]
+
+    # Compilação das expressões regulares
+    token_regex = '|'.join('(?P&lt;%s&gt;%s)' % pair for pair in token_specs)
+    regex = re.compile(token_regex)
+
+    # Geração dos tokens
+    tokens = []
+    for match in regex.finditer(code):
+        token_type = match.lastgroup
+        token_value = match.group(token_type)
+        if token_type != 'SKIP':
+            tokens.append((token_type, token_value))
+
+    return tokens
+
+# Código-fonte de exemplo
+code = '''
+if x &gt; 10 then
+    print(&quot;Hello, World!&quot;)
+else
+    print(&quot;x is less than or equal to 10&quot;)
+end
+'''
+
+# Chamada da função de tokenização
+tokens = tokenize(code)
+
+# Criação da tabela de símbolos usando o pandas
+symbol_table = pd.DataFrame(tokens, columns=['Token Type', 'Token Value'])
+
+# Impressão da tabela de símbolos
+print(&quot;Tabela de Símbolos:&quot;)
+print(symbol_table)
+</code></pre>
+<p>Neste exemplo atualizado, utilizamos o pandas para criar uma tabela de símbolos a partir dos tokens gerados. Após chamar a função <code>tokenize</code> com o código-fonte de exemplo, criamos um DataFrame do pandas chamado <code>symbol_table</code> usando os tokens como dados e especificando as colunas como "Token Type" e "Token Value".</p>
+<p>Por fim, imprimimos a tabela de símbolos usando o método <code>print</code>.</p>
+<p>Ao executar este código no Google Colab, você verá a seguinte saída:</p>
+<pre><code>Tabela de Símbolos:
+   Token Type            Token Value
+0     KEYWORD                     if
+1  IDENTIFIER                      x
+2    OPERATOR                      &gt;
+3      NUMBER                     10
+4     KEYWORD                   then
+5     KEYWORD                  print
+6      LPAREN                      (
+7      STRING        &quot;Hello, World!&quot;
+8      RPAREN                      )
+9     KEYWORD                   else
+10    KEYWORD                  print
+11     LPAREN                      (
+12     STRING  &quot;x is less than or equal to 10&quot;
+13     RPAREN                      )
+14    KEYWORD                    end
+</code></pre>
+<p>A tabela de símbolos exibe cada token encontrado no código-fonte, juntamente com seu tipo de token correspondente.</p>
+<h2 id="conclusao">Conclusão 🎉</h2>
+<p>Compilação e interpretação são duas abordagens distintas para processar o código-fonte e executá-lo em um computador. Enquanto a compilação oferece maior velocidade de execução e menor consumo de recursos, a interpretação proporciona maior flexibilidade e portabilidade. A escolha entre essas abordagens depende dos requisitos específicos do projeto, levando em consideração fatores como desempenho, consumo de energia e facilidade de desenvolvimento.</p>
+<p>Ao compreender as diferenças entre compilação e interpretação, os programadores podem tomar decisões informadas sobre qual abordagem adotar para seus projetos, buscando o equilíbrio ideal entre eficiência e produtividade. 🚀</p>
+<h2 id="indicacao-de-livros">Indicação de Livros:</h2>
+<p><img alt="image" src="https://www.casadocodigo.com.br/cdn/shop/products/ProgramacaoFuncionaleConcorrenteemRust_ebook_large.jpg?v=1631652169" /></p>
+<p>Link: <a href="https://www.casadocodigo.com.br/products/livro-rust-funcional-concorrente">Programação Funcional e Concorrente em Rust</a></p>
+<p><img alt="image" src="https://www.casadocodigo.com.br/cdn/shop/products/ASP.NETCoreMVC__Amazon_large.jpg?v=1631571623" /></p>
+<p>Link: <a href="https://www.casadocodigo.com.br/products/livro-aspnet-core-mvc">ASP.NET Core MVC</a></p>
               
             </div>
           </div><footer>
