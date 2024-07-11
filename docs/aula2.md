@@ -154,15 +154,56 @@ Tokens são unidades básicas de um programa que possuem um significado próprio
 
 ## Exemplo de Código-Fonte 💻
 
-Vamos considerar o seguinte código-fonte em uma linguagem de programação hipotética:
+Vou demonstrar como isso funciona com uma equação simples em C#.
 
+Vamos considerar a seguinte equação em C#:
+
+```csharp
+int result = 3 + 5 * (2 - 8);
 ```
-if x > 10 then
-    print("Hello, World!")
-else
-    print("x is less than or equal to 10")
-end
-```
+
+### Passos da Análise Léxica
+
+1. **Entrada do Código-Fonte:**
+   ```csharp
+   int result = 3 + 5 * (2 - 8);
+   ```
+
+2. **Divisão em Tokens:**
+   A análise léxica divide o código-fonte em unidades menores chamadas tokens. Cada token representa uma unidade sintática do código, como palavras-chave, identificadores, operadores, literais, etc.
+
+3. **Tabela de Tokens:**
+   Aqui está a tabela de tokens gerada a partir da equação acima:
+
+   | Token       | Tipo            | Descrição                        |
+   |-------------|-----------------|----------------------------------|
+   | `int`       | Palavra-chave   | Tipo de dado inteiro             |
+   | `result`    | Identificador   | Nome da variável                 |
+   | `=`         | Operador        | Operador de atribuição           |
+   | `3`         | Literal         | Número inteiro                   |
+   | `+`         | Operador        | Operador de adição               |
+   | `5`         | Literal         | Número inteiro                   |
+   | `*`         | Operador        | Operador de multiplicação        |
+   | `(`         | Delimitador     | Parêntese de abertura            |
+   | `2`         | Literal         | Número inteiro                   |
+   | `-`         | Operador        | Operador de subtração            |
+   | `8`         | Literal         | Número inteiro                   |
+   | `)`         | Delimitador     | Parêntese de fechamento          |
+   | `;`         | Delimitador     | Ponto e vírgula (fim da instrução)|
+
+### Explicação Detalhada
+
+- **Palavras-chave:** São termos reservados pela linguagem de programação. No exemplo, `int` é uma palavra-chave que indica que a variável `result` é do tipo inteiro.
+- **Identificadores:** São nomes dados a variáveis, funções, classes, etc. No exemplo, `result` é um identificador.
+- **Operadores:** São símbolos que representam operações. No exemplo, `=`, `+`, `*`, e `-` são operadores.
+- **Literais:** São valores constantes diretamente representados no código. No exemplo, `3`, `5`, `2`, e `8` são literais inteiros.
+- **Delimitadores:** São caracteres que delimitam estruturas de código. No exemplo, `(`, `)`, e `;` são delimitadores.
+
+- **Palavras-chave:** São termos reservados pela linguagem de programação. No exemplo, `int` é uma palavra-chave que indica que a variável `result` é do tipo inteiro.
+- **Identificadores:** São nomes dados a variáveis, funções, classes, etc. No exemplo, `result` é um identificador.
+- **Operadores:** São símbolos que representam operações. No exemplo, `=`, `+`, `*`, e `-` são operadores.
+- **Literais:** São valores constantes diretamente representados no código. No exemplo, `3`, `5`, `2`, e `8` são literais inteiros.
+- **Delimitadores:** São caracteres que delimitam estruturas de código. No exemplo, `(`, `)`, e `;` são delimitadores.
 
 ## Implementação do Analisador Léxico em Python 🐍
 

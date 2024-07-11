@@ -265,13 +265,119 @@
 <h2 id="o-que-sao-tokens">O que são Tokens? 🎫</h2>
 <p>Tokens são unidades básicas de um programa que possuem um significado próprio. Eles podem ser palavras-chave, identificadores, literais, operadores ou símbolos especiais. Cada token é classificado de acordo com sua categoria léxica.</p>
 <h2 id="exemplo-de-codigo-fonte">Exemplo de Código-Fonte 💻</h2>
-<p>Vamos considerar o seguinte código-fonte em uma linguagem de programação hipotética:</p>
-<pre><code>if x &gt; 10 then
-    print(&quot;Hello, World!&quot;)
-else
-    print(&quot;x is less than or equal to 10&quot;)
-end
+<p>Vou demonstrar como isso funciona com uma equação simples em C#.</p>
+<p>Vamos considerar a seguinte equação em C#:</p>
+<pre><code class="language-csharp">int result = 3 + 5 * (2 - 8);
 </code></pre>
+<h3 id="passos-da-analise-lexica">Passos da Análise Léxica</h3>
+<ol>
+<li>
+<p><strong>Entrada do Código-Fonte:</strong>
+   <code>csharp
+   int result = 3 + 5 * (2 - 8);</code></p>
+</li>
+<li>
+<p><strong>Divisão em Tokens:</strong>
+   A análise léxica divide o código-fonte em unidades menores chamadas tokens. Cada token representa uma unidade sintática do código, como palavras-chave, identificadores, operadores, literais, etc.</p>
+</li>
+<li>
+<p><strong>Tabela de Tokens:</strong>
+   Aqui está a tabela de tokens gerada a partir da equação acima:</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Tipo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td>Palavra-chave</td>
+<td>Tipo de dado inteiro</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>Identificador</td>
+<td>Nome da variável</td>
+</tr>
+<tr>
+<td><code>=</code></td>
+<td>Operador</td>
+<td>Operador de atribuição</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Literal</td>
+<td>Número inteiro</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Operador</td>
+<td>Operador de adição</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Literal</td>
+<td>Número inteiro</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Operador</td>
+<td>Operador de multiplicação</td>
+</tr>
+<tr>
+<td><code>(</code></td>
+<td>Delimitador</td>
+<td>Parêntese de abertura</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Literal</td>
+<td>Número inteiro</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Operador</td>
+<td>Operador de subtração</td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td>Literal</td>
+<td>Número inteiro</td>
+</tr>
+<tr>
+<td><code>)</code></td>
+<td>Delimitador</td>
+<td>Parêntese de fechamento</td>
+</tr>
+<tr>
+<td><code>;</code></td>
+<td>Delimitador</td>
+<td>Ponto e vírgula (fim da instrução)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="explicacao-detalhada">Explicação Detalhada</h3>
+<ul>
+<li><strong>Palavras-chave:</strong> São termos reservados pela linguagem de programação. No exemplo, <code>int</code> é uma palavra-chave que indica que a variável <code>result</code> é do tipo inteiro.</li>
+<li><strong>Identificadores:</strong> São nomes dados a variáveis, funções, classes, etc. No exemplo, <code>result</code> é um identificador.</li>
+<li><strong>Operadores:</strong> São símbolos que representam operações. No exemplo, <code>=</code>, <code>+</code>, <code>*</code>, e <code>-</code> são operadores.</li>
+<li><strong>Literais:</strong> São valores constantes diretamente representados no código. No exemplo, <code>3</code>, <code>5</code>, <code>2</code>, e <code>8</code> são literais inteiros.</li>
+<li>
+<p><strong>Delimitadores:</strong> São caracteres que delimitam estruturas de código. No exemplo, <code>(</code>, <code>)</code>, e <code>;</code> são delimitadores.</p>
+</li>
+<li>
+<p><strong>Palavras-chave:</strong> São termos reservados pela linguagem de programação. No exemplo, <code>int</code> é uma palavra-chave que indica que a variável <code>result</code> é do tipo inteiro.</p>
+</li>
+<li><strong>Identificadores:</strong> São nomes dados a variáveis, funções, classes, etc. No exemplo, <code>result</code> é um identificador.</li>
+<li><strong>Operadores:</strong> São símbolos que representam operações. No exemplo, <code>=</code>, <code>+</code>, <code>*</code>, e <code>-</code> são operadores.</li>
+<li><strong>Literais:</strong> São valores constantes diretamente representados no código. No exemplo, <code>3</code>, <code>5</code>, <code>2</code>, e <code>8</code> são literais inteiros.</li>
+<li><strong>Delimitadores:</strong> São caracteres que delimitam estruturas de código. No exemplo, <code>(</code>, <code>)</code>, e <code>;</code> são delimitadores.</li>
+</ul>
 <h2 id="implementacao-do-analisador-lexico-em-python">Implementação do Analisador Léxico em Python 🐍</h2>
 <p>Agora, vamos implementar um analisador léxico simples em Python para gerar os tokens a partir do código-fonte acima.</p>
 <pre><code class="language-python">import re
