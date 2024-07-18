@@ -4,6 +4,16 @@
 
 Olá, alunos! Sejam muito bem-vindos ao módulo de Compiladores. Este curso foi cuidadosamente elaborado para guiá-los através dos conceitos fundamentais e avançados da construção de compiladores. Ao longo deste módulo, vocês aprenderão sobre as diferentes fases de um compilador, desde a análise léxica até a geração de código.
 
+---
+
+## Playlist de 22 aulas de Compiladores do IFSC
+
+<div class="container mt-5">
+    <a href="https://www.youtube.com/playlist?list=PLzQ6XQkjUvZ-_oJbCrOplrsooavy1FqDj" class="btn btn-neutral" target="_blank">Aulas</a>
+</div>
+
+---
+
 ## Objetivos do Curso
 
 Neste módulo, vocês irão:

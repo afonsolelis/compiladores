@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Análise Léxica - Compiladores</title>
+    <title>Análise Sintática - Compiladores</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "An\u00e1lise L\u00e9xica";
+        var mkdocs_page_name = "An\u00e1lise Sint\u00e1tica";
         var mkdocs_page_input_path = "aula3.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,15 +48,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../aula2/">Compilação e Interação: Do Código ao Executável 💻🔧</a>
+                <li class="toctree-l1"><a class="reference internal" href="../aula2/">Análise Léxica</a>
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Análise Léxica</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Análise Sintática</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#introducao">Introdução</a>
+    <li class="toctree-l2"><a class="reference internal" href="#introducao-antes-revisitaremos-a-analise-lexica">Introdução - Antes, revisitaremos a Análise Léxica</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#objetivos-da-analise-lexica">Objetivos da Análise Léxica</a>
+    <li class="toctree-l2"><a class="reference internal" href="#objetivos-da-analise-lexica-um-resumo">Objetivos da Análise Léxica: Um Resumo</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#componentes-de-um-analisador-lexico">Componentes de um Analisador Léxico</a>
     </li>
@@ -93,7 +93,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Análise Léxica</li>
+      <li class="breadcrumb-item active">Análise Sintática</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,10 +102,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="analise-lexica">Análise Léxica</h1>
-<h2 id="introducao">Introdução</h2>
+                <h1 id="analise-sintatica">Análise Sintática</h1>
+<h2 id="introducao-antes-revisitaremos-a-analise-lexica">Introdução - Antes, revisitaremos a Análise Léxica</h2>
 <p>A análise léxica, também conhecida como lexing ou tokenização, é o primeiro estágio na compilação de um programa. Esse processo envolve a conversão de uma sequência de caracteres de entrada em uma sequência de tokens, que são unidades atômicas significativas do código fonte. Esses tokens podem representar palavras-chave, identificadores, literais, operadores e outros elementos sintáticos.</p>
-<h2 id="objetivos-da-analise-lexica">Objetivos da Análise Léxica</h2>
+<h2 id="objetivos-da-analise-lexica-um-resumo">Objetivos da Análise Léxica: Um Resumo</h2>
 <p>Os principais objetivos da análise léxica incluem:</p>
 <ol>
 <li><strong>Simplificação da análise sintática</strong>: Convertendo a entrada em tokens, a análise sintática (ou parsing) torna-se mais simples e eficiente.</li>
@@ -220,8 +220,8 @@ print(tokens)
  ('RPAREN', ')'), ('DIVIDE', '/'), ('NUMBER', 2)]
 </code></pre>
 <p>Boa sorte e divirta-se resolvendo o desafio!</p>
-<h1 id="analise-sintatica">Análise Sintática</h1>
-<h2 id="introducao_1">Introdução</h2>
+<h1 id="analise-sintatica_1">Análise Sintática</h1>
+<h2 id="introducao">Introdução</h2>
 <p>A análise sintática, também conhecida como parsing, é o segundo estágio do processo de compilação. Ela envolve a análise da sequência de tokens gerada pelo analisador léxico para construir uma estrutura hierárquica, como uma árvore de análise sintática (AST - Abstract Syntax Tree). Essa árvore representa a estrutura gramatical do código fonte conforme definido pela gramática da linguagem de programação.</p>
 <h2 id="objetivos-da-analise-sintatica">Objetivos da Análise Sintática</h2>
 <p>Os principais objetivos da análise sintática incluem:</p>
@@ -474,9 +474,9 @@ AST: ('PLUS', ('ID', 'x'), ('DIVIDE', ('TIMES', ('NUMBER', '3'), ('MINUS', ('ID'
 <p>Boa sorte e divirta-se resolvendo o desafio!</p>
 <h1 id="resumao">Resumão!</h1>
 <h2 id="analise-de-compilacao-lexica-sintatica-e-semantica">Análise de Compilação: Léxica, Sintática e Semântica</h2>
-<h2 id="introducao_2">Introdução</h2>
+<h2 id="introducao_1">Introdução</h2>
 <p>O processo de compilação de um programa pode ser dividido em várias fases distintas. Cada fase tem um papel crucial na transformação do código fonte em código executável. As três principais fases são a análise léxica, a análise sintática e a análise semântica.</p>
-<h2 id="analise-lexica_1">Análise Léxica</h2>
+<h2 id="analise-lexica">Análise Léxica</h2>
 <h3 id="objetivo">Objetivo</h3>
 <p>A análise léxica, também conhecida como lexing ou tokenização, é a primeira etapa do processo de compilação. Seu objetivo é converter a sequência de caracteres do código fonte em uma sequência de tokens, que são as menores unidades significativas do código.</p>
 <h3 id="componentes">Componentes</h3>
@@ -524,7 +524,7 @@ def lexical_analysis(expression):
 
     return tokens
 </code></pre>
-<h2 id="analise-sintatica_1">Análise Sintática</h2>
+<h2 id="analise-sintatica_2">Análise Sintática</h2>
 <h3 id="objetivo_1">Objetivo</h3>
 <p>A análise sintática, ou parsing, é a segunda etapa do processo de compilação. Seu objetivo é analisar a sequência de tokens para construir uma estrutura hierárquica, como uma árvore de análise sintática (AST), que representa a estrutura gramatical do código.</p>
 <h3 id="componentes_1">Componentes</h3>
@@ -671,7 +671,7 @@ if __name__ == &quot;__main__&quot;:
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../aula2/" class="btn btn-neutral float-left" title="Compilação e Interação: Do Código ao Executável 💻🔧"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../aula2/" class="btn btn-neutral float-left" title="Análise Léxica"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../aula4/" class="btn btn-neutral float-right" title="Análise Semântica">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 

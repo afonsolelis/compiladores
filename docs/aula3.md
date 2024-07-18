@@ -1,10 +1,10 @@
-# Análise Léxica
+# Análise Sintática
 
-## Introdução
+## Introdução - Antes, revisitaremos a Análise Léxica
 
 A análise léxica, também conhecida como lexing ou tokenização, é o primeiro estágio na compilação de um programa. Esse processo envolve a conversão de uma sequência de caracteres de entrada em uma sequência de tokens, que são unidades atômicas significativas do código fonte. Esses tokens podem representar palavras-chave, identificadores, literais, operadores e outros elementos sintáticos.
 
-## Objetivos da Análise Léxica
+## Objetivos da Análise Léxica: Um Resumo
 
 Os principais objetivos da análise léxica incluem:
 

@@ -2,8 +2,8 @@ site_name: Compiladores
 nav:
   - Home: index.md
   - "Prazer, Compiladores! 🤝👾": aula1.md
-  - "Compilação e Interação: Do Código ao Executável 💻🔧": aula2.md
-  - "Análise Léxica": aula3.md
+  - "Análise Léxica": aula2.md
+  - "Análise Sintática": aula3.md
   - "Análise Semântica": aula4.md
 theme:
   name: readthedocs
