@@ -58,6 +58,38 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Aula 4</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#objetivos-da-aula">Objetivos da Aula</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#introducao-a-analise-semantica">Introdução à Análise Semântica</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#o-que-e-analise-semantica">O que é Análise Semântica?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#principais-tarefas-da-analise-semantica">Principais Tarefas da Análise Semântica</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exemplo-pratico-com-python">Exemplo Prático com Python</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#atividade-implementacao-de-verificacoes-semanticas">Atividade: Implementação de Verificações Semânticas</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#passo-1-definir-a-gramatica-e-a-tabela-de-simbolos">Passo 1: Definir a Gramática e a Tabela de Símbolos</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#codigo-de-exemplo">Código de Exemplo</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#explicacao-do-codigo">Explicação do Código</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#passo-2-verificacoes-adicionais">Passo 2: Verificações Adicionais</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercicio-para-os-alunos">Exercício para os Alunos</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#conclusao">Conclusão</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#referencias">Referências</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -84,7 +116,135 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="aula-4">Aula 4</h1>
+                <h1 id="aula-analise-semantica-em-compiladores">Aula: Análise Semântica em Compiladores</h1>
+<h2 id="objetivos-da-aula">Objetivos da Aula</h2>
+<ol>
+<li>Entender o que é a análise semântica no contexto de compiladores.</li>
+<li>Aprender as principais tarefas realizadas durante a análise semântica.</li>
+<li>Realizar uma atividade prática utilizando Python para implementar verificações semânticas.</li>
+</ol>
+<h2 id="introducao-a-analise-semantica">Introdução à Análise Semântica</h2>
+<h3 id="o-que-e-analise-semantica">O que é Análise Semântica?</h3>
+<p>A análise semântica é uma fase crucial do processo de compilação que ocorre após a análise léxica e sintática. Enquanto a análise léxica trata da identificação de tokens e a análise sintática verifica a estrutura gramatical do código-fonte, a análise semântica assegura que o código esteja conforme as regras semânticas da linguagem de programação. Esta fase verifica a correta utilização de tipos de variáveis, a resolução de referências a variáveis e funções, e outros aspectos semânticos do código.</p>
+<h3 id="principais-tarefas-da-analise-semantica">Principais Tarefas da Análise Semântica</h3>
+<ul>
+<li><strong>Verificação de Tipos:</strong> Assegura que operações e atribuições entre variáveis são feitas com tipos compatíveis.</li>
+<li><strong>Resolução de Identificadores:</strong> Garante que todas as variáveis e funções referenciadas estão devidamente declaradas.</li>
+<li><strong>Verificação de Escopo:</strong> Confirma que variáveis e funções são acessadas dentro de seus escopos válidos.</li>
+<li><strong>Detecção de Erros Semânticos:</strong> Identifica problemas como o uso de variáveis não inicializadas, funções chamadas com parâmetros incorretos, etc.</li>
+</ul>
+<h2 id="exemplo-pratico-com-python">Exemplo Prático com Python</h2>
+<h3 id="atividade-implementacao-de-verificacoes-semanticas">Atividade: Implementação de Verificações Semânticas</h3>
+<p>Vamos implementar um simples analisador semântico em Python que verifica declarações de variáveis e compatibilidade de tipos em um mini-linguagem de programação fictícia.</p>
+<h3 id="passo-1-definir-a-gramatica-e-a-tabela-de-simbolos">Passo 1: Definir a Gramática e a Tabela de Símbolos</h3>
+<h4 id="codigo-de-exemplo">Código de Exemplo</h4>
+<pre><code class="language-python"># Definindo a Tabela de Símbolos
+symbol_table = {}
+
+# Função para adicionar uma variável à tabela de símbolos
+def declare_variable(name, var_type):
+    if name in symbol_table:
+        raise Exception(f&quot;Erro: Variável '{name}' já declarada.&quot;)
+    symbol_table[name] = var_type
+
+# Função para verificar o tipo de uma variável
+def check_variable(name):
+    if name not in symbol_table:
+        raise Exception(f&quot;Erro: Variável '{name}' não declarada.&quot;)
+    return symbol_table[name]
+
+# Função para verificar a atribuição de tipos
+def assign_variable(name, value, value_type):
+    var_type = check_variable(name)
+    if var_type != value_type:
+        raise Exception(f&quot;Erro: Tipo incompatível. '{name}' é do tipo '{var_type}' mas foi atribuído um valor do tipo '{value_type}'.&quot;)
+
+# Função para imprimir a tabela de símbolos (para depuração)
+def print_symbol_table():
+    print(&quot;Tabela de Símbolos:&quot;)
+    for name, var_type in symbol_table.items():
+        print(f&quot;{name}: {var_type}&quot;)
+
+# Exemplo de uso das funções
+try:
+    declare_variable(&quot;x&quot;, &quot;int&quot;)
+    declare_variable(&quot;y&quot;, &quot;float&quot;)
+    assign_variable(&quot;x&quot;, 10, &quot;int&quot;)
+    assign_variable(&quot;y&quot;, 3.14, &quot;float&quot;)
+    print_symbol_table()
+except Exception as e:
+    print(e)
+</code></pre>
+<h3 id="explicacao-do-codigo">Explicação do Código</h3>
+<ol>
+<li><strong>Tabela de Símbolos:</strong> Um dicionário que armazena os nomes das variáveis e seus respectivos tipos.</li>
+<li><strong>Funções de Declaração e Verificação:</strong> <code>declare_variable</code> adiciona uma variável à tabela de símbolos, <code>check_variable</code> verifica se uma variável foi declarada, e <code>assign_variable</code> verifica a compatibilidade de tipos na atribuição de valores.</li>
+<li><strong>Teste das Funções:</strong> Declaramos duas variáveis (<code>x</code> e <code>y</code>), atribuimos valores compatíveis a elas, e imprimimos a tabela de símbolos.</li>
+</ol>
+<h3 id="passo-2-verificacoes-adicionais">Passo 2: Verificações Adicionais</h3>
+<p>Podemos estender este exemplo para incluir verificações mais complexas, como:
+- <strong>Verificação de Funções:</strong> Assegurar que as funções sejam chamadas com os parâmetros corretos.
+- <strong>Escopo de Variáveis:</strong> Implementar uma pilha de escopos para lidar com variáveis locais e globais.</p>
+<h3 id="exercicio-para-os-alunos">Exercício para os Alunos</h3>
+<ol>
+<li><strong>Adicionar Suporte para Funções:</strong> Implementar a declaração e verificação de funções, assegurando que as chamadas de função utilizem o número correto de parâmetros com os tipos esperados.</li>
+<li><strong>Implementar Escopos:</strong> Modificar a tabela de símbolos para suportar escopos aninhados e garantir que variáveis locais não interfiram com variáveis globais.</li>
+</ol>
+<h3 id="conclusao">Conclusão</h3>
+<p>A análise semântica é uma etapa essencial para garantir que o código-fonte seja válido em termos de regras semânticas da linguagem de programação. Compreender e implementar estas verificações ajuda a detectar erros antes da geração do código de máquina, melhorando a confiabilidade e a correção dos programas compilados.</p>
+<h3 id="referencias">Referências</h3>
+<ul>
+<li><strong>Livro:</strong> "Compiladores: Princípios, Técnicas e Ferramentas" de Aho, Lam, Sethi, e Ullman.</li>
+<li><strong>Documentação Python:</strong> <a href="https://docs.python.org/3/">https://docs.python.org/3/</a></li>
+</ul>
+<hr />
+<h1 id="resumao-do-modulo">Resumão do Módulo</h1>
+<h2 id="pontos-principais">Pontos Principais</h2>
+<h3 id="analise-lexica">Análise Léxica</h3>
+<ul>
+<li><strong>Descrição:</strong> Primeira fase do processo de compilação, responsável por dividir o código-fonte em unidades significativas chamadas tokens. Esses tokens incluem palavras-chave, identificadores, números, e símbolos.</li>
+<li><strong>Importância:</strong> Facilita a análise subsequente do código, preparando-o para as fases de análise sintática e semântica.</li>
+</ul>
+<h3 id="analise-sintatica">Análise Sintática</h3>
+<ul>
+<li><strong>Descrição:</strong> Verifica se a estrutura gramatical do código-fonte segue as regras da linguagem de programação. Constrói uma árvore de derivação que representa a estrutura do código.</li>
+<li><strong>Importância:</strong> Garante que o código esteja sintaticamente correto antes de passar para a análise semântica.</li>
+</ul>
+<h3 id="analise-semantica">Análise Semântica</h3>
+<ul>
+<li><strong>Descrição:</strong> Garante que o código-fonte obedeça às regras semânticas da linguagem, como a correta utilização de tipos de variáveis e a resolução de referências a variáveis e funções.</li>
+<li><strong>Importância:</strong> Detecta e relata erros semânticos, assegurando que o código tenha significado correto e coerência.</li>
+</ul>
+<h3 id="otimizacao-de-codigo">Otimização de Código</h3>
+<ul>
+<li><strong>Descrição:</strong> Processo que melhora o desempenho do código gerado pelo compilador, reorganizando instruções para reduzir operações redundantes e aumentar a eficiência.</li>
+<li><strong>Importância:</strong> Produz código mais eficiente, que executa mais rapidamente e utiliza menos recursos.</li>
+</ul>
+<h3 id="compilador">Compilador</h3>
+<ul>
+<li><strong>Descrição:</strong> Ferramenta de software que traduz código de alto nível (como C++ ou Java) em código de máquina ou outra forma de código intermediário.</li>
+<li><strong>Importância:</strong> Permite a execução de programas escritos em linguagens de alto nível em computadores, traduzindo-os para um formato compreensível pelo hardware.</li>
+</ul>
+<h3 id="tabela-de-simbolos-e-gramatica">Tabela de Símbolos e Gramática</h3>
+<ul>
+<li><strong>Descrição:</strong> Utilizadas pelo analisador semântico para processar a árvore de derivação. A tabela de símbolos mantém informações sobre variáveis, funções, e outros elementos do código.</li>
+<li><strong>Importância:</strong> Facilita a verificação semântica e a correção de erros relacionados ao uso de variáveis e funções no código.</li>
+</ul>
+<h3 id="linguagem-pascal">Linguagem Pascal</h3>
+<ul>
+<li><strong>Descrição:</strong> Linguagem de programação apresentada em 1970 por Niklaus Emil Wirth, que segue os paradigmas estruturado, imperativo e procedural. Um exemplo típico é um programa que recebe dois números diferentes e determina o maior.</li>
+<li><strong>Importância:</strong> Pascal é usada para ilustrar conceitos de programação estruturada e a importância da verificação de tipos e escopos em compiladores.</li>
+</ul>
+<h3 id="analise-de-tipos-de-dados">Análise de Tipos de Dados</h3>
+<ul>
+<li><strong>Descrição:</strong> Verificação realizada pelo analisador semântico para assegurar que operandos e operadores são compatíveis, evitando atribuições inconsistentes.</li>
+<li><strong>Importância:</strong> Essencial para manter a integridade e coerência dos dados no código, prevenindo erros de execução.</li>
+</ul>
+<h3 id="funcoes-do-analisador-semantico">Funções do Analisador Semântico</h3>
+<ul>
+<li><strong>Descrição:</strong> Detecta variáveis declaradas mas não utilizadas, funções declaradas em duplicidade e previne o uso de nomes de funções por variáveis.</li>
+<li><strong>Importância:</strong> Ajuda a manter o código organizado e livre de erros que possam afetar sua execução e manutenção.</li>
+</ul>
               
             </div>
           </div><footer>
