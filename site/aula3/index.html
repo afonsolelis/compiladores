@@ -54,6 +54,24 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Aula 3</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introducao">Introdução</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#objetivos-da-analise-lexica">Objetivos da Análise Léxica</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#componentes-de-um-analisador-lexico">Componentes de um Analisador Léxico</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#processo-de-analise-lexica">Processo de Análise Léxica</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exemplo-de-tokens">Exemplo de Tokens</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#desafio-em-python">Desafio em Python</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#desafio-implementar-um-analisador-lexico-em-python">Desafio: Implementar um Analisador Léxico em Python</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#teste-esperado">Teste esperado</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -84,7 +102,571 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="aula-3">Aula 3</h1>
+                <h1 id="analise-lexica">Análise Léxica</h1>
+<h2 id="introducao">Introdução</h2>
+<p>A análise léxica, também conhecida como lexing ou tokenização, é o primeiro estágio na compilação de um programa. Esse processo envolve a conversão de uma sequência de caracteres de entrada em uma sequência de tokens, que são unidades atômicas significativas do código fonte. Esses tokens podem representar palavras-chave, identificadores, literais, operadores e outros elementos sintáticos.</p>
+<h2 id="objetivos-da-analise-lexica">Objetivos da Análise Léxica</h2>
+<p>Os principais objetivos da análise léxica incluem:</p>
+<ol>
+<li><strong>Simplificação da análise sintática</strong>: Convertendo a entrada em tokens, a análise sintática (ou parsing) torna-se mais simples e eficiente.</li>
+<li><strong>Detecção de erros léxicos</strong>: Identificar e relatar erros na fase inicial da compilação.</li>
+<li><strong>Remoção de elementos irrelevantes</strong>: Eliminar espaços em branco, comentários e outros elementos que não afetam a execução do código.</li>
+</ol>
+<h2 id="componentes-de-um-analisador-lexico">Componentes de um Analisador Léxico</h2>
+<p>Um analisador léxico geralmente é composto por:</p>
+<ul>
+<li><strong>Tabela de símbolos</strong>: Armazena informações sobre identificadores e palavras-chave encontradas no código.</li>
+<li><strong>Regras léxicas</strong>: Definem padrões para reconhecer tokens utilizando expressões regulares.</li>
+<li><strong>Autômatos Finitos</strong>: Implementam as regras léxicas para varrer a entrada e produzir tokens.</li>
+</ul>
+<h2 id="processo-de-analise-lexica">Processo de Análise Léxica</h2>
+<ol>
+<li><strong>Leitura da entrada</strong>: O código fonte é lido como uma sequência de caracteres.</li>
+<li><strong>Aplicação de regras léxicas</strong>: Padrões são aplicados para identificar diferentes tipos de tokens.</li>
+<li><strong>Geração de tokens</strong>: Cada padrão identificado é convertido em um token correspondente.</li>
+<li><strong>Tratamento de erros</strong>: Se um padrão inválido é encontrado, um erro léxico é reportado.</li>
+</ol>
+<h2 id="exemplo-de-tokens">Exemplo de Tokens</h2>
+<p>Considere o seguinte trecho de código:</p>
+<pre><code class="language-python">int main() {
+    int a = 10;
+    int b = 20;
+    int sum = a + b;
+}
+</code></pre>
+<p>O analisador léxico pode gerar a seguinte sequência de tokens:</p>
+<ol>
+<li><code>int</code> (palavra-chave)</li>
+<li><code>main</code> (identificador)</li>
+<li><code>(</code> (símbolo)</li>
+<li><code>)</code> (símbolo)</li>
+<li><code>{</code> (símbolo)</li>
+<li><code>int</code> (palavra-chave)</li>
+<li><code>a</code> (identificador)</li>
+<li><code>=</code> (operador)</li>
+<li><code>10</code> (literal)</li>
+<li><code>;</code> (símbolo)</li>
+<li><code>int</code> (palavra-chave)</li>
+<li><code>b</code> (identificador)</li>
+<li><code>=</code> (operador)</li>
+<li><code>20</code> (literal)</li>
+<li><code>;</code> (símbolo)</li>
+<li><code>int</code> (palavra-chave)</li>
+<li><code>sum</code> (identificador)</li>
+<li><code>=</code> (operador)</li>
+<li><code>a</code> (identificador)</li>
+<li><code>+</code> (operador)</li>
+<li><code>b</code> (identificador)</li>
+<li><code>;</code> (símbolo)</li>
+<li><code>}</code> (símbolo)</li>
+</ol>
+<h2 id="desafio-em-python">Desafio em Python</h2>
+<p>Agora que você compreendeu o básico sobre análise léxica, aqui está um desafio para colocar em prática seus conhecimentos. </p>
+<h3 id="desafio-implementar-um-analisador-lexico-em-python">Desafio: Implementar um Analisador Léxico em Python</h3>
+<p>Escreva um analisador léxico em Python que reconheça os seguintes tokens em uma expressão aritmética simples contendo inteiros, operadores (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>) e parênteses:</p>
+<ul>
+<li>Inteiros: uma sequência de dígitos.</li>
+<li>Operadores: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></li>
+<li>Parênteses: <code>(</code>, <code>)</code></li>
+</ul>
+<p>Sua tarefa é implementar a função <code>lexical_analysis</code> que recebe uma string contendo a expressão aritmética e retorna uma lista de tokens.</p>
+<pre><code class="language-python">import re
+
+def lexical_analysis(expression):
+    # Definir os padrões para os tokens
+    token_specification = [
+        ('NUMBER',    r'\d+'),    # Inteiros
+        ('PLUS',      r'\+'),     # Operador +
+        ('MINUS',     r'-'),      # Operador -
+        ('TIMES',     r'\*'),     # Operador *
+        ('DIVIDE',    r'/'),      # Operador /
+        ('LPAREN',    r'\('),     # Parêntese esquerdo
+        ('RPAREN',    r'\)'),     # Parêntese direito
+        ('SKIP',      r'[ \t]+'), # Espaços em branco
+        ('MISMATCH',  r'.'),      # Qualquer outro caractere
+    ]
+
+    # Compilar as expressões regulares em um único regex
+    tok_regex = '|'.join(f'(?P&lt;{pair[0]}&gt;{pair[1]})' for pair in token_specification)
+    get_token = re.compile(tok_regex).match
+    line = expression.strip()
+    pos = 0
+    tokens = []
+
+    # Iterar sobre a string de entrada para encontrar os tokens
+    while pos &lt; len(line):
+        match = get_token(line, pos)
+        if match is None:
+            raise RuntimeError(f'Erro léxico em {line[pos]}')
+        pos = match.end()
+        token_type = match.lastgroup
+        if token_type == 'NUMBER':
+            value = int(match.group(token_type))
+            tokens.append((token_type, value))
+        elif token_type != 'SKIP':
+            tokens.append((token_type, match.group(token_type)))
+
+    return tokens
+
+# Teste seu analisador léxico
+expression = &quot;3 + 5 * ( 10 - 20 ) / 2&quot;
+tokens = lexical_analysis(expression)
+print(tokens)
+</code></pre>
+<h3 id="teste-esperado">Teste esperado</h3>
+<p>Para a expressão <code>"3 + 5 * ( 10 - 20 ) / 2"</code>, a saída esperada seria:</p>
+<pre><code class="language-python">[('NUMBER', 3), ('PLUS', '+'), ('NUMBER', 5), ('TIMES', '*'), 
+ ('LPAREN', '('), ('NUMBER', 10), ('MINUS', '-'), ('NUMBER', 20), 
+ ('RPAREN', ')'), ('DIVIDE', '/'), ('NUMBER', 2)]
+</code></pre>
+<p>Boa sorte e divirta-se resolvendo o desafio!</p>
+<h1 id="analise-sintatica">Análise Sintática</h1>
+<h2 id="introducao_1">Introdução</h2>
+<p>A análise sintática, também conhecida como parsing, é o segundo estágio do processo de compilação. Ela envolve a análise da sequência de tokens gerada pelo analisador léxico para construir uma estrutura hierárquica, como uma árvore de análise sintática (AST - Abstract Syntax Tree). Essa árvore representa a estrutura gramatical do código fonte conforme definido pela gramática da linguagem de programação.</p>
+<h2 id="objetivos-da-analise-sintatica">Objetivos da Análise Sintática</h2>
+<p>Os principais objetivos da análise sintática incluem:</p>
+<ol>
+<li><strong>Verificação da estrutura gramatical</strong>: Garantir que a sequência de tokens obedeça às regras gramaticais da linguagem.</li>
+<li><strong>Construção de estruturas hierárquicas</strong>: Criar representações estruturais do código, como árvores de análise ou grafos.</li>
+<li><strong>Detecção de erros sintáticos</strong>: Identificar e relatar erros gramaticais.</li>
+</ol>
+<h2 id="componentes-de-um-analisador-sintatico">Componentes de um Analisador Sintático</h2>
+<p>Um analisador sintático geralmente é composto por:</p>
+<ul>
+<li><strong>Gramática da linguagem</strong>: Um conjunto de regras que define a estrutura da linguagem.</li>
+<li><strong>Analisador léxico</strong>: Um componente que fornece a sequência de tokens.</li>
+<li><strong>Algoritmo de parsing</strong>: Responsável por construir a árvore de análise a partir dos tokens.</li>
+</ul>
+<h2 id="processo-de-analise-sintatica">Processo de Análise Sintática</h2>
+<ol>
+<li><strong>Recebimento dos tokens</strong>: A sequência de tokens gerada pelo analisador léxico é recebida.</li>
+<li><strong>Aplicação de regras gramaticais</strong>: As regras gramaticais são aplicadas para construir a árvore de análise.</li>
+<li><strong>Detecção de erros sintáticos</strong>: Erros são detectados e reportados se a sequência de tokens não obedecer às regras gramaticais.</li>
+</ol>
+<h2 id="exemplos-de-gramaticas">Exemplos de Gramáticas</h2>
+<p>Considere a seguinte gramática para expressões aritméticas simples:</p>
+<ul>
+<li>Expressão → Termo {("+" | "-") Termo}</li>
+<li>Termo → Fator {("*" | "/") Fator}</li>
+<li>Fator → Número | "(" Expressão ")"</li>
+</ul>
+<h2 id="exemplo-de-implementacao">Exemplo de Implementação</h2>
+<p>Abaixo está uma implementação básica de um analisador sintático para expressões aritméticas em Python. Ele utiliza um analisador léxico para gerar tokens e, em seguida, constrói uma árvore de análise sintática (AST).</p>
+<pre><code class="language-python">import re
+
+# Analisador Léxico
+def lexical_analysis(expression):
+    token_specification = [
+        ('NUMBER',    r'\d+'),    
+        ('PLUS',      r'\+'),     
+        ('MINUS',     r'-'),      
+        ('TIMES',     r'\*'),     
+        ('DIVIDE',    r'/'),      
+        ('LPAREN',    r'\('),     
+        ('RPAREN',    r'\)'),     
+        ('SKIP',      r'[ \t]+'), 
+        ('MISMATCH',  r'.'),      
+    ]
+
+    tok_regex = '|'.join(f'(?P&lt;{pair[0]}&gt;{pair[1]})' for pair in token_specification)
+    get_token = re.compile(tok_regex).match
+    line = expression.strip()
+    pos = 0
+    tokens = []
+
+    while pos &lt; len(line):
+        match = get_token(line, pos)
+        if match is None:
+            raise RuntimeError(f'Erro léxico em {line[pos]}')
+        pos = match.end()
+        token_type = match.lastgroup
+        if token_type == 'NUMBER':
+            value = int(match.group(token_type))
+            tokens.append((token_type, value))
+        elif token_type != 'SKIP':
+            tokens.append((token_type, match.group(token_type)))
+
+    return tokens
+
+# Analisador Sintático
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.pos = 0
+
+    def parse(self):
+        return self.expression()
+
+    def expression(self):
+        node = self.term()
+        while self.current_token() in ('PLUS', 'MINUS'):
+            token = self.current_token()
+            self.next_token()
+            node = (token, node, self.term())
+        return node
+
+    def term(self):
+        node = self.factor()
+        while self.current_token() in ('TIMES', 'DIVIDE'):
+            token = self.current_token()
+            self.next_token()
+            node = (token, node, self.factor())
+        return node
+
+    def factor(self):
+        token = self.current_token()
+        if token == 'NUMBER':
+            self.next_token()
+            return ('NUMBER', self.current_value())
+        elif token == 'LPAREN':
+            self.next_token()
+            node = self.expression()
+            if self.current_token() == 'RPAREN':
+                self.next_token()
+                return node
+            else:
+                raise RuntimeError(&quot;Erro: ')' esperado&quot;)
+        else:
+            raise RuntimeError(f&quot;Erro: Token inesperado {token}&quot;)
+
+    def current_token(self):
+        return self.tokens[self.pos][0] if self.pos &lt; len(self.tokens) else None
+
+    def current_value(self):
+        return self.tokens[self.pos - 1][1]
+
+    def next_token(self):
+        self.pos += 1
+
+# Função principal para realizar a análise léxica e sintática
+def main():
+    expression = &quot;3 + 5 * ( 10 - 20 ) / 2&quot;
+    tokens = lexical_analysis(expression)
+    print(&quot;Tokens:&quot;, tokens)
+
+    parser = Parser(tokens)
+    ast = parser.parse()
+    print(&quot;AST:&quot;, ast)
+
+# Executar a função principal
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="desafio-em-python_1">Desafio em Python</h2>
+<p>Agora que você compreendeu o básico sobre análise sintática, aqui está um desafio para colocar em prática seus conhecimentos.</p>
+<h3 id="desafio-implementar-um-analisador-sintatico-completo">Desafio: Implementar um Analisador Sintático Completo</h3>
+<p>Escreva um analisador sintático que, além de analisar expressões aritméticas simples, seja capaz de analisar expressões com variáveis. Considere a seguinte gramática estendida:</p>
+<ul>
+<li>Expressão → Termo {("+" | "-") Termo}</li>
+<li>Termo → Fator {("*" | "/") Fator}</li>
+<li>Fator → Número | Identificador | "(" Expressão ")"</li>
+<li>Identificador → [a-zA-Z_][a-zA-Z0-9_]*</li>
+</ul>
+<p>Implemente a função <code>parse</code> para lidar com variáveis e teste-a com uma expressão que inclua variáveis.</p>
+<pre><code class="language-python">import re
+
+def lexical_analysis(expression):
+    token_specification = [
+        ('NUMBER',    r'\d+'),
+        ('ID',        r'[a-zA-Z_][a-zA-Z0-9_]*'),
+        ('PLUS',      r'\+'),
+        ('MINUS',     r'-'),
+        ('TIMES',     r'\*'),
+        ('DIVIDE',    r'/'),
+        ('LPAREN',    r'\('),
+        ('RPAREN',    r'\)'),
+        ('SKIP',      r'[ \t]+'),
+        ('MISMATCH',  r'.'),
+    ]
+
+    tok_regex = '|'.join(f'(?P&lt;{pair[0]}&gt;{pair[1]})' for pair in token_specification)
+    get_token = re.compile(tok_regex).match
+    line = expression.strip()
+    pos = 0
+    tokens = []
+
+    while pos &lt; len(line):
+        match = get_token(line, pos)
+        if match is None:
+            raise RuntimeError(f'Erro léxico em {line[pos]}')
+        pos = match.end()
+        token_type = match.lastgroup
+        if token_type in ('NUMBER', 'ID'):
+            value = match.group(token_type)
+            tokens.append((token_type, value))
+        elif token_type != 'SKIP':
+            tokens.append((token_type, match.group(token_type)))
+
+    return tokens
+
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.pos = 0
+
+    def parse(self):
+        return self.expression()
+
+    def expression(self):
+        node = self.term()
+        while self.current_token() in ('PLUS', 'MINUS'):
+            token = self.current_token()
+            self.next_token()
+            node = (token, node, self.term())
+        return node
+
+    def term(self):
+        node = self.factor()
+        while self.current_token() in ('TIMES', 'DIVIDE'):
+            token = self.current_token()
+            self.next_token()
+            node = (token, node, self.factor())
+        return node
+
+    def factor(self):
+        token = self.current_token()
+        if token == 'NUMBER':
+            self.next_token()
+            return ('NUMBER', self.current_value())
+        elif token == 'ID':
+            self.next_token()
+            return ('ID', self.current_value())
+        elif token == 'LPAREN':
+            self.next_token()
+            node = self.expression()
+            if self.current_token() == 'RPAREN':
+                self.next_token()
+                return node
+            else:
+                raise RuntimeError(&quot;Erro: ')' esperado&quot;)
+        else:
+            raise RuntimeError(f&quot;Erro: Token inesperado {token}&quot;)
+
+    def current_token(self):
+        return self.tokens[self.pos][0] if self.pos &lt; len(self.tokens) else None
+
+    def current_value(self):
+        return self.tokens[self.pos - 1][1]
+
+    def next_token(self):
+        self.pos += 1
+
+def main():
+    expression = &quot;x + 3 * ( y - 2 ) / z&quot;
+    tokens = lexical_analysis(expression)
+    print(&quot;Tokens:&quot;, tokens)
+
+    parser = Parser(tokens)
+    ast = parser.parse()
+    print(&quot;AST:&quot;, ast)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3 id="teste-esperado_1">Teste esperado</h3>
+<p>Para a expressão <code>"x + 3 * ( y - 2 ) / z"</code>, a</p>
+<p>saída esperada seria:</p>
+<pre><code class="language-python">Tokens: [('ID', 'x'), ('PLUS', '+'), ('NUMBER', '3'), ('TIMES', '*'), 
+         ('LPAREN', '('), ('ID', 'y'), ('MINUS', '-'), ('NUMBER', '2'), 
+         ('RPAREN', ')'), ('DIVIDE', '/'), ('ID', 'z')]
+AST: ('PLUS', ('ID', 'x'), ('DIVIDE', ('TIMES', ('NUMBER', '3'), ('MINUS', ('ID', 'y'), ('NUMBER', '2'))), ('ID', 'z')))
+</code></pre>
+<p>Boa sorte e divirta-se resolvendo o desafio!</p>
+<h1 id="resumao">Resumão!</h1>
+<h2 id="analise-de-compilacao-lexica-sintatica-e-semantica">Análise de Compilação: Léxica, Sintática e Semântica</h2>
+<h2 id="introducao_2">Introdução</h2>
+<p>O processo de compilação de um programa pode ser dividido em várias fases distintas. Cada fase tem um papel crucial na transformação do código fonte em código executável. As três principais fases são a análise léxica, a análise sintática e a análise semântica.</p>
+<h2 id="analise-lexica_1">Análise Léxica</h2>
+<h3 id="objetivo">Objetivo</h3>
+<p>A análise léxica, também conhecida como lexing ou tokenização, é a primeira etapa do processo de compilação. Seu objetivo é converter a sequência de caracteres do código fonte em uma sequência de tokens, que são as menores unidades significativas do código.</p>
+<h3 id="componentes">Componentes</h3>
+<ul>
+<li><strong>Tabela de símbolos</strong>: Armazena informações sobre identificadores e palavras-chave.</li>
+<li><strong>Regras léxicas</strong>: Definem padrões para reconhecer tokens usando expressões regulares.</li>
+<li><strong>Autômatos Finitos</strong>: Implementam as regras léxicas para varrer a entrada e produzir tokens.</li>
+</ul>
+<h3 id="exemplo-de-tokens_1">Exemplo de Tokens</h3>
+<p>Para o código <code>int a = 10;</code>, os tokens podem ser: <code>int</code>, <code>a</code>, <code>=</code>, <code>10</code>, <code>;</code>.</p>
+<h3 id="implementacao">Implementação</h3>
+<pre><code class="language-python">import re
+
+def lexical_analysis(expression):
+    token_specification = [
+        ('NUMBER',    r'\d+'),
+        ('ID',        r'[a-zA-Z_][a-zA-Z0-9_]*'),
+        ('PLUS',      r'\+'),
+        ('MINUS',     r'-'),
+        ('TIMES',     r'\*'),
+        ('DIVIDE',    r'/'),
+        ('LPAREN',    r'\('),
+        ('RPAREN',    r'\)'),
+        ('SKIP',      r'[ \t]+'),
+        ('MISMATCH',  r'.'),
+    ]
+
+    tok_regex = '|'.join(f'(?P&lt;{pair[0]}&gt;{pair[1]})' for pair in token_specification)
+    get_token = re.compile(tok_regex).match
+    line = expression.strip()
+    pos = 0
+    tokens = []
+
+    while pos &lt; len(line):
+        match = get_token(line, pos)
+        if match is None:
+            raise RuntimeError(f'Erro léxico em {line[pos]}')
+        pos = match.end()
+        token_type = match.lastgroup
+        if token_type in ('NUMBER', 'ID'):
+            value = match.group(token_type)
+            tokens.append((token_type, value))
+        elif token_type != 'SKIP':
+            tokens.append((token_type, match.group(token_type)))
+
+    return tokens
+</code></pre>
+<h2 id="analise-sintatica_1">Análise Sintática</h2>
+<h3 id="objetivo_1">Objetivo</h3>
+<p>A análise sintática, ou parsing, é a segunda etapa do processo de compilação. Seu objetivo é analisar a sequência de tokens para construir uma estrutura hierárquica, como uma árvore de análise sintática (AST), que representa a estrutura gramatical do código.</p>
+<h3 id="componentes_1">Componentes</h3>
+<ul>
+<li><strong>Gramática da linguagem</strong>: Conjunto de regras que define a estrutura da linguagem.</li>
+<li><strong>Analisador léxico</strong>: Componente que fornece a sequência de tokens.</li>
+<li><strong>Algoritmo de parsing</strong>: Constrói a árvore de análise a partir dos tokens.</li>
+</ul>
+<h3 id="exemplo-de-gramatica">Exemplo de Gramática</h3>
+<p>Para expressões aritméticas simples:
+- Expressão → Termo {("+" | "-") Termo}
+- Termo → Fator {("*" | "/") Fator}
+- Fator → Número | Identificador | "(" Expressão ")"</p>
+<h3 id="implementacao_1">Implementação</h3>
+<pre><code class="language-python">class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens
+        self.pos = 0
+
+    def parse(self):
+        return self.expression()
+
+    def expression(self):
+        node = self.term()
+        while self.current_token() in ('PLUS', 'MINUS'):
+            token = self.current_token()
+            self.next_token()
+            node = (token, node, self.term())
+        return node
+
+    def term(self):
+        node = self.factor()
+        while self.current_token() in ('TIMES', 'DIVIDE'):
+            token = self.current_token()
+            self.next_token()
+            node = (token, node, self.factor())
+        return node
+
+    def factor(self):
+        token = self.current_token()
+        if token == 'NUMBER':
+            self.next_token()
+            return ('NUMBER', self.current_value())
+        elif token == 'ID':
+            self.next_token()
+            return ('ID', self.current_value())
+        elif token == 'LPAREN':
+            self.next_token()
+            node = self.expression()
+            if self.current_token() == 'RPAREN':
+                self.next_token()
+                return node
+            else:
+                raise RuntimeError(&quot;Erro: ')' esperado&quot;)
+        else:
+            raise RuntimeError(f&quot;Erro: Token inesperado {token}&quot;)
+
+    def current_token(self):
+        return self.tokens[self.pos][0] if self.pos &lt; len(self.tokens) else None
+
+    def current_value(self):
+        return self.tokens[self.pos - 1][1]
+
+    def next_token(self):
+        self.pos += 1
+
+# Função principal para realizar a análise léxica e sintática
+def main():
+    expression = &quot;x + 3 * ( y - 2 ) / z&quot;
+    tokens = lexical_analysis(expression)
+    print(&quot;Tokens:&quot;, tokens)
+
+    parser = Parser(tokens)
+    ast = parser.parse()
+    print(&quot;AST:&quot;, ast)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="analise-semantica">Análise Semântica</h2>
+<h3 id="objetivo_2">Objetivo</h3>
+<p>A análise semântica é a terceira etapa do processo de compilação. Seu objetivo é verificar a correção semântica do programa, assegurando que ele faz sentido dentro do contexto da linguagem. Isso inclui verificação de tipos, escopo de variáveis e outras regras semânticas.</p>
+<h3 id="componentes_2">Componentes</h3>
+<ul>
+<li><strong>Tabela de símbolos</strong>: Armazena informações sobre identificadores, seus tipos e escopos.</li>
+<li><strong>Regras semânticas</strong>: Definem as verificações necessárias para garantir a correção semântica do código.</li>
+</ul>
+<h3 id="processo">Processo</h3>
+<ol>
+<li><strong>Verificação de tipos</strong>: Assegurar que as operações são realizadas entre tipos compatíveis.</li>
+<li><strong>Resolução de identificadores</strong>: Garantir que todas as variáveis e funções estão declaradas antes de serem usadas.</li>
+<li><strong>Análise de escopo</strong>: Verificar que as variáveis estão acessíveis apenas dentro do seu escopo.</li>
+</ol>
+<h3 id="exemplo-de-verificacao-de-tipos">Exemplo de Verificação de Tipos</h3>
+<p>Para a expressão <code>x + 3</code>, onde <code>x</code> é uma variável do tipo <code>int</code>:</p>
+<pre><code class="language-python">class SemanticAnalyzer:
+    def __init__(self, ast, symbol_table):
+        self.ast = ast
+        self.symbol_table = symbol_table
+
+    def analyze(self):
+        return self._analyze_node(self.ast)
+
+    def _analyze_node(self, node):
+        if isinstance(node, tuple):
+            op = node[0]
+            left = self._analyze_node(node[1])
+            right = self._analyze_node(node[2])
+            if op in ('PLUS', 'MINUS', 'TIMES', 'DIVIDE'):
+                if left != 'int' or right != 'int':
+                    raise RuntimeError(f&quot;Erro semântico: operação {op} inválida entre {left} e {right}&quot;)
+                return 'int'
+        elif node[0] == 'NUMBER':
+            return 'int'
+        elif node[0] == 'ID':
+            identifier = node[1]
+            if identifier not in self.symbol_table:
+                raise RuntimeError(f&quot;Erro semântico: variável {identifier} não declarada&quot;)
+            return self.symbol_table[identifier]
+        else:
+            raise RuntimeError(f&quot;Erro semântico: nó inválido {node}&quot;)
+
+# Função principal para realizar a análise semântica
+def main():
+    expression = &quot;x + 3 * ( y - 2 ) / z&quot;
+    tokens = lexical_analysis(expression)
+    print(&quot;Tokens:&quot;, tokens)
+
+    parser = Parser(tokens)
+    ast = parser.parse()
+    print(&quot;AST:&quot;, ast)
+
+    symbol_table = {'x': 'int', 'y': 'int', 'z': 'int'}
+    analyzer = SemanticAnalyzer(ast, symbol_table)
+    analyzer.analyze()
+    print(&quot;Análise semântica concluída com sucesso&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="conclusao">Conclusão</h2>
+<p>A análise léxica, sintática e semântica são etapas fundamentais do processo de compilação, cada uma desempenhando um papel crucial na transformação do código fonte em um programa executável. A análise léxica converte o código em tokens, a análise sintática constrói a estrutura gramatical e a análise semântica verifica a correção contextual do programa. Compreender essas etapas é essencial para o desenvolvimento de compiladores e intérpretes eficientes.</p>
               
             </div>
           </div><footer>

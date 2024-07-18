@@ -39,3 +39,7 @@ Estamos muito empolgados em iniciar esta jornada com vocês. Compiladores são u
 Vamos começar!
 
 **Equipe do Módulo de Compiladores**
+
+## Quem ajusta o código???
+
+Link do formulário: [Form](https://docs.google.com/forms/d/e/1FAIpQLSe34givDaIYw8ievzqbbqYDMIOQNJbTXMXcvKshXXXj67N7Ug/viewform?usp=sf_link)
